@@ -1,0 +1,8 @@
+prefix=/home/galazxhy/Depth_Recog/devel
+
+Name: Recog
+Description: Description of Recog
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

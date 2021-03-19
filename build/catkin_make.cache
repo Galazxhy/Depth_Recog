@@ -1,0 +1,2 @@
+pcd_read:recog:ros_astra_camera
+-DCATKIN_DEVEL_PREFIX=/home/galazxhy/Depth_Recog/devel -DCMAKE_INSTALL_PREFIX=/home/galazxhy/Depth_Recog/install -G Unix Makefiles
