@@ -1,0 +1,10 @@
+[Unit]
+Description=Auto_start server daemon
+
+[Service]
+Type=simple
+ExecStart=/home/galazxhy/Depth_Recog/Auto_start.sh
+
+[Install]
+WantedBy=multi-user.target
+

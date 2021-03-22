@@ -20,6 +20,7 @@ d2086c9990c5171dce9cafac11541191 /home/galazxhy/Depth_Recog/devel/include/astra_
 0e4f1e4d7b588274ffa2d23ed47cdde4 /home/galazxhy/Depth_Recog/devel/include/astra_camera/SetUVCWhiteBalance.h
 99b993a7536d330db3faa95caf73ff32 /home/galazxhy/Depth_Recog/devel/include/astra_camera/SwitchIRCamera.h
 d60b0d960a3b565b4b33242e69089c47 /home/galazxhy/Depth_Recog/devel/include/astra_camera/UVCCameraConfig.h
+b0a98f92f15694ad2ca31a7724ef7176 /home/galazxhy/Depth_Recog/devel/include/recog/Position.h
 e5fa0b6c75dc3cafc53ec7b7392e8df0 /home/galazxhy/Depth_Recog/devel/lib/python2.7/dist-packages/astra_camera/srv/_GetCameraInfo.py
 14c75c05e424aae5574aa33d5e71ec9d /home/galazxhy/Depth_Recog/devel/lib/python2.7/dist-packages/astra_camera/srv/_GetDeviceType.py
 513fe5854c4c3662641cbcd75b22529d /home/galazxhy/Depth_Recog/devel/lib/python2.7/dist-packages/astra_camera/srv/_GetIRExposure.py
@@ -40,6 +41,8 @@ ef2cc420d03794b2fe40db4f1b73fe13 /home/galazxhy/Depth_Recog/devel/lib/python2.7/
 ebe8d217bc22afe0e1683f776b44812a /home/galazxhy/Depth_Recog/devel/lib/python2.7/dist-packages/astra_camera/srv/_SetUVCWhiteBalance.py
 346f4365e6d3cb812289f7abd245cda0 /home/galazxhy/Depth_Recog/devel/lib/python2.7/dist-packages/astra_camera/srv/_SwitchIRCamera.py
 6399bbf21a54ab16b9ea71aed9ccb0d3 /home/galazxhy/Depth_Recog/devel/lib/python2.7/dist-packages/astra_camera/srv/__init__.py
+9bf420f0ff7df66d4f6895dba4571235 /home/galazxhy/Depth_Recog/devel/lib/python2.7/dist-packages/recog/msg/_Position.py
+7b11bdef9104bc82cf0ddba341e8c825 /home/galazxhy/Depth_Recog/devel/lib/python2.7/dist-packages/recog/msg/__init__.py
 49f30a619a1521d1fdcb2714289e99ca /home/galazxhy/Depth_Recog/devel/share/common-lisp/ros/astra_camera/srv/GetCameraInfo.lisp
 b169e98371243e4dcf062802c54bd2e2 /home/galazxhy/Depth_Recog/devel/share/common-lisp/ros/astra_camera/srv/GetDeviceType.lisp
 e1466bc078f95258f55fc160f2b3cab6 /home/galazxhy/Depth_Recog/devel/share/common-lisp/ros/astra_camera/srv/GetIRExposure.lisp
@@ -59,6 +62,7 @@ da28b46b1fa263456590cb570ddb1b4d /home/galazxhy/Depth_Recog/devel/share/common-l
 1c1999bcdd34dd05d765a0ecde074467 /home/galazxhy/Depth_Recog/devel/share/common-lisp/ros/astra_camera/srv/SetUVCGain.lisp
 ab747e95dd40496840173966435237bb /home/galazxhy/Depth_Recog/devel/share/common-lisp/ros/astra_camera/srv/SetUVCWhiteBalance.lisp
 67ca06562f3bd773dfdb551b53382197 /home/galazxhy/Depth_Recog/devel/share/common-lisp/ros/astra_camera/srv/SwitchIRCamera.lisp
+42fe5c5af19df309786d58883d52bc20 /home/galazxhy/Depth_Recog/devel/share/common-lisp/ros/recog/msg/Position.lisp
 4c9f511fdefd785725fc23202c78e3b8 /home/galazxhy/Depth_Recog/devel/share/gennodejs/ros/astra_camera/srv/GetCameraInfo.js
 a1bb09ef75a883796140d337a604c810 /home/galazxhy/Depth_Recog/devel/share/gennodejs/ros/astra_camera/srv/GetDeviceType.js
 0fda2ace6fbe0a06e1c29f83a18b2cba /home/galazxhy/Depth_Recog/devel/share/gennodejs/ros/astra_camera/srv/GetIRExposure.js
@@ -78,6 +82,7 @@ f0e3450023e0775a5933a82878c374cb /home/galazxhy/Depth_Recog/devel/share/gennodej
 592066a52c1c9c73b5b4c6b689a3f9b5 /home/galazxhy/Depth_Recog/devel/share/gennodejs/ros/astra_camera/srv/SetUVCGain.js
 4327d6cff9e47ccb6cf950f5dbe0ee71 /home/galazxhy/Depth_Recog/devel/share/gennodejs/ros/astra_camera/srv/SetUVCWhiteBalance.js
 61eb6ae94752bbdaa2f607c18c3bbc29 /home/galazxhy/Depth_Recog/devel/share/gennodejs/ros/astra_camera/srv/SwitchIRCamera.js
+093010ee5fc350e60f32f84cccc93294 /home/galazxhy/Depth_Recog/devel/share/gennodejs/ros/recog/msg/Position.js
 38e26a55237dd67848e92081e2062eda /home/galazxhy/Depth_Recog/devel/share/roseus/ros/astra_camera/manifest.l
 383e2e1fe5471c3c73dd8f664262f97f /home/galazxhy/Depth_Recog/devel/share/roseus/ros/astra_camera/srv/GetCameraInfo.l
 f54e772eb8d08fa0fe2431b0f251a2c3 /home/galazxhy/Depth_Recog/devel/share/roseus/ros/astra_camera/srv/GetDeviceType.l
@@ -98,7 +103,15 @@ bafc59878622ecbce838fe7c3ffbe156 /home/galazxhy/Depth_Recog/devel/share/roseus/r
 7e3669c7ff513565d9a9505708b6be6c /home/galazxhy/Depth_Recog/devel/share/roseus/ros/astra_camera/srv/SetUVCGain.l
 ed6bc60df63d46de6a6e0a07bd1afedf /home/galazxhy/Depth_Recog/devel/share/roseus/ros/astra_camera/srv/SetUVCWhiteBalance.l
 ba79585031e27850be2146a84ec0a34b /home/galazxhy/Depth_Recog/devel/share/roseus/ros/astra_camera/srv/SwitchIRCamera.l
+0c2354d04497e52ad0d253e6d26715d1 /home/galazxhy/Depth_Recog/devel/share/roseus/ros/recog/manifest.l
+25f8188d03a734f289b17aef9e535c85 /home/galazxhy/Depth_Recog/devel/share/roseus/ros/recog/msg/Position.l
 78bdd766be2e6cf08ffeedde64f20e18 CMakeFiles/clean_test_results
+4d03fb6aff0e6868a17e33a2668df299 recog/CMakeFiles/_recog_generate_messages_check_deps_Position
+8e31be0d6c7c65597c9229763cb9166c recog/CMakeFiles/recog_generate_messages_cpp
+8e31be0d6c7c65597c9229763cb9166c recog/CMakeFiles/recog_generate_messages_eus
+8e31be0d6c7c65597c9229763cb9166c recog/CMakeFiles/recog_generate_messages_lisp
+8e31be0d6c7c65597c9229763cb9166c recog/CMakeFiles/recog_generate_messages_nodejs
+8e31be0d6c7c65597c9229763cb9166c recog/CMakeFiles/recog_generate_messages_py
 809ac678ae9184345acb93bf4f8176d2 ros_astra_camera/CMakeFiles/_astra_camera_generate_messages_check_deps_GetCameraInfo
 0b3cd27e160e870b1cc7f3c4294ce2e3 ros_astra_camera/CMakeFiles/_astra_camera_generate_messages_check_deps_GetDeviceType
 2f5f95736c510c78bff1d7f104fe845d ros_astra_camera/CMakeFiles/_astra_camera_generate_messages_check_deps_GetIRExposure

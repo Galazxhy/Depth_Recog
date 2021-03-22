@@ -1832,6 +1832,71 @@ tf2_msgs_generate_messages_lisp/fast:
 .PHONY : tf2_msgs_generate_messages_lisp/fast
 
 #=============================================================================
+# Target rules for targets named recog_genlisp
+
+# Build rule for target.
+recog_genlisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 recog_genlisp
+.PHONY : recog_genlisp
+
+# fast build rule for target.
+recog_genlisp/fast:
+	$(MAKE) -f recog/CMakeFiles/recog_genlisp.dir/build.make recog/CMakeFiles/recog_genlisp.dir/build
+.PHONY : recog_genlisp/fast
+
+#=============================================================================
+# Target rules for targets named recog_geneus
+
+# Build rule for target.
+recog_geneus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 recog_geneus
+.PHONY : recog_geneus
+
+# fast build rule for target.
+recog_geneus/fast:
+	$(MAKE) -f recog/CMakeFiles/recog_geneus.dir/build.make recog/CMakeFiles/recog_geneus.dir/build
+.PHONY : recog_geneus/fast
+
+#=============================================================================
+# Target rules for targets named recog_generate_messages
+
+# Build rule for target.
+recog_generate_messages: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 recog_generate_messages
+.PHONY : recog_generate_messages
+
+# fast build rule for target.
+recog_generate_messages/fast:
+	$(MAKE) -f recog/CMakeFiles/recog_generate_messages.dir/build.make recog/CMakeFiles/recog_generate_messages.dir/build
+.PHONY : recog_generate_messages/fast
+
+#=============================================================================
+# Target rules for targets named _recog_generate_messages_check_deps_Position
+
+# Build rule for target.
+_recog_generate_messages_check_deps_Position: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _recog_generate_messages_check_deps_Position
+.PHONY : _recog_generate_messages_check_deps_Position
+
+# fast build rule for target.
+_recog_generate_messages_check_deps_Position/fast:
+	$(MAKE) -f recog/CMakeFiles/_recog_generate_messages_check_deps_Position.dir/build.make recog/CMakeFiles/_recog_generate_messages_check_deps_Position.dir/build
+.PHONY : _recog_generate_messages_check_deps_Position/fast
+
+#=============================================================================
+# Target rules for targets named recog_generate_messages_lisp
+
+# Build rule for target.
+recog_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 recog_generate_messages_lisp
+.PHONY : recog_generate_messages_lisp
+
+# fast build rule for target.
+recog_generate_messages_lisp/fast:
+	$(MAKE) -f recog/CMakeFiles/recog_generate_messages_lisp.dir/build.make recog/CMakeFiles/recog_generate_messages_lisp.dir/build
+.PHONY : recog_generate_messages_lisp/fast
+
+#=============================================================================
 # Target rules for targets named filter
 
 # Build rule for target.
@@ -1843,6 +1908,110 @@ filter: cmake_check_build_system
 filter/fast:
 	$(MAKE) -f recog/CMakeFiles/filter.dir/build.make recog/CMakeFiles/filter.dir/build
 .PHONY : filter/fast
+
+#=============================================================================
+# Target rules for targets named recog_generate_messages_cpp
+
+# Build rule for target.
+recog_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 recog_generate_messages_cpp
+.PHONY : recog_generate_messages_cpp
+
+# fast build rule for target.
+recog_generate_messages_cpp/fast:
+	$(MAKE) -f recog/CMakeFiles/recog_generate_messages_cpp.dir/build.make recog/CMakeFiles/recog_generate_messages_cpp.dir/build
+.PHONY : recog_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named recog_gennodejs
+
+# Build rule for target.
+recog_gennodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 recog_gennodejs
+.PHONY : recog_gennodejs
+
+# fast build rule for target.
+recog_gennodejs/fast:
+	$(MAKE) -f recog/CMakeFiles/recog_gennodejs.dir/build.make recog/CMakeFiles/recog_gennodejs.dir/build
+.PHONY : recog_gennodejs/fast
+
+#=============================================================================
+# Target rules for targets named recog_generate_messages_py
+
+# Build rule for target.
+recog_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 recog_generate_messages_py
+.PHONY : recog_generate_messages_py
+
+# fast build rule for target.
+recog_generate_messages_py/fast:
+	$(MAKE) -f recog/CMakeFiles/recog_generate_messages_py.dir/build.make recog/CMakeFiles/recog_generate_messages_py.dir/build
+.PHONY : recog_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named recog_genpy
+
+# Build rule for target.
+recog_genpy: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 recog_genpy
+.PHONY : recog_genpy
+
+# fast build rule for target.
+recog_genpy/fast:
+	$(MAKE) -f recog/CMakeFiles/recog_genpy.dir/build.make recog/CMakeFiles/recog_genpy.dir/build
+.PHONY : recog_genpy/fast
+
+#=============================================================================
+# Target rules for targets named recog_generate_messages_eus
+
+# Build rule for target.
+recog_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 recog_generate_messages_eus
+.PHONY : recog_generate_messages_eus
+
+# fast build rule for target.
+recog_generate_messages_eus/fast:
+	$(MAKE) -f recog/CMakeFiles/recog_generate_messages_eus.dir/build.make recog/CMakeFiles/recog_generate_messages_eus.dir/build
+.PHONY : recog_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named recog_gencpp
+
+# Build rule for target.
+recog_gencpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 recog_gencpp
+.PHONY : recog_gencpp
+
+# fast build rule for target.
+recog_gencpp/fast:
+	$(MAKE) -f recog/CMakeFiles/recog_gencpp.dir/build.make recog/CMakeFiles/recog_gencpp.dir/build
+.PHONY : recog_gencpp/fast
+
+#=============================================================================
+# Target rules for targets named recog_generate_messages_nodejs
+
+# Build rule for target.
+recog_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 recog_generate_messages_nodejs
+.PHONY : recog_generate_messages_nodejs
+
+# fast build rule for target.
+recog_generate_messages_nodejs/fast:
+	$(MAKE) -f recog/CMakeFiles/recog_generate_messages_nodejs.dir/build.make recog/CMakeFiles/recog_generate_messages_nodejs.dir/build
+.PHONY : recog_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named feature
+
+# Build rule for target.
+feature: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 feature
+.PHONY : feature
+
+# fast build rule for target.
+feature/fast:
+	$(MAKE) -f recog/CMakeFiles/feature.dir/build.make recog/CMakeFiles/feature.dir/build
+.PHONY : feature/fast
 
 # Help Target
 help:
@@ -1985,7 +2154,20 @@ help:
 	@echo "... tf2_msgs_generate_messages_cpp"
 	@echo "... tf2_msgs_generate_messages_py"
 	@echo "... tf2_msgs_generate_messages_lisp"
+	@echo "... recog_genlisp"
+	@echo "... recog_geneus"
+	@echo "... recog_generate_messages"
+	@echo "... _recog_generate_messages_check_deps_Position"
+	@echo "... recog_generate_messages_lisp"
 	@echo "... filter"
+	@echo "... recog_generate_messages_cpp"
+	@echo "... recog_gennodejs"
+	@echo "... recog_generate_messages_py"
+	@echo "... recog_genpy"
+	@echo "... recog_generate_messages_eus"
+	@echo "... recog_gencpp"
+	@echo "... recog_generate_messages_nodejs"
+	@echo "... feature"
 .PHONY : help
 
 

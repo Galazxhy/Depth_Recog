@@ -1,4 +1,5 @@
 <launch>
     <include file="$(find astra_camera)/launch/astra.launch" />
     <node pkg = "recog" type = "filter" name = "cloud_filter" output = "screen"/>
+    <node pkg = "recog" type = "feature" name = "cloud_feature" output = "screen"/>
 </launch>

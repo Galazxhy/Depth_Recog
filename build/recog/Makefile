@@ -80,6 +80,29 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
@@ -111,29 +134,6 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,6 +168,81 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+recog/CMakeFiles/recog_genlisp.dir/rule:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/recog_genlisp.dir/rule
+.PHONY : recog/CMakeFiles/recog_genlisp.dir/rule
+
+# Convenience name for target.
+recog_genlisp: recog/CMakeFiles/recog_genlisp.dir/rule
+
+.PHONY : recog_genlisp
+
+# fast build rule for target.
+recog_genlisp/fast:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/recog_genlisp.dir/build.make recog/CMakeFiles/recog_genlisp.dir/build
+.PHONY : recog_genlisp/fast
+
+# Convenience name for target.
+recog/CMakeFiles/recog_geneus.dir/rule:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/recog_geneus.dir/rule
+.PHONY : recog/CMakeFiles/recog_geneus.dir/rule
+
+# Convenience name for target.
+recog_geneus: recog/CMakeFiles/recog_geneus.dir/rule
+
+.PHONY : recog_geneus
+
+# fast build rule for target.
+recog_geneus/fast:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/recog_geneus.dir/build.make recog/CMakeFiles/recog_geneus.dir/build
+.PHONY : recog_geneus/fast
+
+# Convenience name for target.
+recog/CMakeFiles/recog_generate_messages.dir/rule:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/recog_generate_messages.dir/rule
+.PHONY : recog/CMakeFiles/recog_generate_messages.dir/rule
+
+# Convenience name for target.
+recog_generate_messages: recog/CMakeFiles/recog_generate_messages.dir/rule
+
+.PHONY : recog_generate_messages
+
+# fast build rule for target.
+recog_generate_messages/fast:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/recog_generate_messages.dir/build.make recog/CMakeFiles/recog_generate_messages.dir/build
+.PHONY : recog_generate_messages/fast
+
+# Convenience name for target.
+recog/CMakeFiles/_recog_generate_messages_check_deps_Position.dir/rule:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/_recog_generate_messages_check_deps_Position.dir/rule
+.PHONY : recog/CMakeFiles/_recog_generate_messages_check_deps_Position.dir/rule
+
+# Convenience name for target.
+_recog_generate_messages_check_deps_Position: recog/CMakeFiles/_recog_generate_messages_check_deps_Position.dir/rule
+
+.PHONY : _recog_generate_messages_check_deps_Position
+
+# fast build rule for target.
+_recog_generate_messages_check_deps_Position/fast:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/_recog_generate_messages_check_deps_Position.dir/build.make recog/CMakeFiles/_recog_generate_messages_check_deps_Position.dir/build
+.PHONY : _recog_generate_messages_check_deps_Position/fast
+
+# Convenience name for target.
+recog/CMakeFiles/recog_generate_messages_lisp.dir/rule:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/recog_generate_messages_lisp.dir/rule
+.PHONY : recog/CMakeFiles/recog_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+recog_generate_messages_lisp: recog/CMakeFiles/recog_generate_messages_lisp.dir/rule
+
+.PHONY : recog_generate_messages_lisp
+
+# fast build rule for target.
+recog_generate_messages_lisp/fast:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/recog_generate_messages_lisp.dir/build.make recog/CMakeFiles/recog_generate_messages_lisp.dir/build
+.PHONY : recog_generate_messages_lisp/fast
+
+# Convenience name for target.
 recog/CMakeFiles/filter.dir/rule:
 	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/filter.dir/rule
 .PHONY : recog/CMakeFiles/filter.dir/rule
@@ -181,6 +256,153 @@ filter: recog/CMakeFiles/filter.dir/rule
 filter/fast:
 	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/filter.dir/build.make recog/CMakeFiles/filter.dir/build
 .PHONY : filter/fast
+
+# Convenience name for target.
+recog/CMakeFiles/recog_generate_messages_cpp.dir/rule:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/recog_generate_messages_cpp.dir/rule
+.PHONY : recog/CMakeFiles/recog_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+recog_generate_messages_cpp: recog/CMakeFiles/recog_generate_messages_cpp.dir/rule
+
+.PHONY : recog_generate_messages_cpp
+
+# fast build rule for target.
+recog_generate_messages_cpp/fast:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/recog_generate_messages_cpp.dir/build.make recog/CMakeFiles/recog_generate_messages_cpp.dir/build
+.PHONY : recog_generate_messages_cpp/fast
+
+# Convenience name for target.
+recog/CMakeFiles/recog_gennodejs.dir/rule:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/recog_gennodejs.dir/rule
+.PHONY : recog/CMakeFiles/recog_gennodejs.dir/rule
+
+# Convenience name for target.
+recog_gennodejs: recog/CMakeFiles/recog_gennodejs.dir/rule
+
+.PHONY : recog_gennodejs
+
+# fast build rule for target.
+recog_gennodejs/fast:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/recog_gennodejs.dir/build.make recog/CMakeFiles/recog_gennodejs.dir/build
+.PHONY : recog_gennodejs/fast
+
+# Convenience name for target.
+recog/CMakeFiles/recog_generate_messages_py.dir/rule:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/recog_generate_messages_py.dir/rule
+.PHONY : recog/CMakeFiles/recog_generate_messages_py.dir/rule
+
+# Convenience name for target.
+recog_generate_messages_py: recog/CMakeFiles/recog_generate_messages_py.dir/rule
+
+.PHONY : recog_generate_messages_py
+
+# fast build rule for target.
+recog_generate_messages_py/fast:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/recog_generate_messages_py.dir/build.make recog/CMakeFiles/recog_generate_messages_py.dir/build
+.PHONY : recog_generate_messages_py/fast
+
+# Convenience name for target.
+recog/CMakeFiles/recog_genpy.dir/rule:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/recog_genpy.dir/rule
+.PHONY : recog/CMakeFiles/recog_genpy.dir/rule
+
+# Convenience name for target.
+recog_genpy: recog/CMakeFiles/recog_genpy.dir/rule
+
+.PHONY : recog_genpy
+
+# fast build rule for target.
+recog_genpy/fast:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/recog_genpy.dir/build.make recog/CMakeFiles/recog_genpy.dir/build
+.PHONY : recog_genpy/fast
+
+# Convenience name for target.
+recog/CMakeFiles/recog_generate_messages_eus.dir/rule:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/recog_generate_messages_eus.dir/rule
+.PHONY : recog/CMakeFiles/recog_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+recog_generate_messages_eus: recog/CMakeFiles/recog_generate_messages_eus.dir/rule
+
+.PHONY : recog_generate_messages_eus
+
+# fast build rule for target.
+recog_generate_messages_eus/fast:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/recog_generate_messages_eus.dir/build.make recog/CMakeFiles/recog_generate_messages_eus.dir/build
+.PHONY : recog_generate_messages_eus/fast
+
+# Convenience name for target.
+recog/CMakeFiles/recog_gencpp.dir/rule:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/recog_gencpp.dir/rule
+.PHONY : recog/CMakeFiles/recog_gencpp.dir/rule
+
+# Convenience name for target.
+recog_gencpp: recog/CMakeFiles/recog_gencpp.dir/rule
+
+.PHONY : recog_gencpp
+
+# fast build rule for target.
+recog_gencpp/fast:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/recog_gencpp.dir/build.make recog/CMakeFiles/recog_gencpp.dir/build
+.PHONY : recog_gencpp/fast
+
+# Convenience name for target.
+recog/CMakeFiles/recog_generate_messages_nodejs.dir/rule:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/recog_generate_messages_nodejs.dir/rule
+.PHONY : recog/CMakeFiles/recog_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+recog_generate_messages_nodejs: recog/CMakeFiles/recog_generate_messages_nodejs.dir/rule
+
+.PHONY : recog_generate_messages_nodejs
+
+# fast build rule for target.
+recog_generate_messages_nodejs/fast:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/recog_generate_messages_nodejs.dir/build.make recog/CMakeFiles/recog_generate_messages_nodejs.dir/build
+.PHONY : recog_generate_messages_nodejs/fast
+
+# Convenience name for target.
+recog/CMakeFiles/feature.dir/rule:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/feature.dir/rule
+.PHONY : recog/CMakeFiles/feature.dir/rule
+
+# Convenience name for target.
+feature: recog/CMakeFiles/feature.dir/rule
+
+.PHONY : feature
+
+# fast build rule for target.
+feature/fast:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/feature.dir/build.make recog/CMakeFiles/feature.dir/build
+.PHONY : feature/fast
+
+src/feature.o: src/feature.cpp.o
+
+.PHONY : src/feature.o
+
+# target to build an object file
+src/feature.cpp.o:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/feature.dir/build.make recog/CMakeFiles/feature.dir/src/feature.cpp.o
+.PHONY : src/feature.cpp.o
+
+src/feature.i: src/feature.cpp.i
+
+.PHONY : src/feature.i
+
+# target to preprocess a source file
+src/feature.cpp.i:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/feature.dir/build.make recog/CMakeFiles/feature.dir/src/feature.cpp.i
+.PHONY : src/feature.cpp.i
+
+src/feature.s: src/feature.cpp.s
+
+.PHONY : src/feature.s
+
+# target to generate assembly for a file
+src/feature.cpp.s:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/feature.dir/build.make recog/CMakeFiles/feature.dir/src/feature.cpp.s
+.PHONY : src/feature.cpp.s
 
 src/filter.o: src/filter.cpp.o
 
@@ -217,12 +439,28 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... install/local"
-	@echo "... test"
-	@echo "... list_install_components"
-	@echo "... filter"
-	@echo "... edit_cache"
-	@echo "... rebuild_cache"
 	@echo "... install"
+	@echo "... rebuild_cache"
+	@echo "... recog_genlisp"
+	@echo "... recog_geneus"
+	@echo "... test"
+	@echo "... recog_generate_messages"
+	@echo "... _recog_generate_messages_check_deps_Position"
+	@echo "... recog_generate_messages_lisp"
+	@echo "... filter"
+	@echo "... list_install_components"
+	@echo "... recog_generate_messages_cpp"
+	@echo "... recog_gennodejs"
+	@echo "... recog_generate_messages_py"
+	@echo "... recog_genpy"
+	@echo "... edit_cache"
+	@echo "... recog_generate_messages_eus"
+	@echo "... recog_gencpp"
+	@echo "... recog_generate_messages_nodejs"
+	@echo "... feature"
+	@echo "... src/feature.o"
+	@echo "... src/feature.i"
+	@echo "... src/feature.s"
 	@echo "... src/filter.o"
 	@echo "... src/filter.i"
 	@echo "... src/filter.s"

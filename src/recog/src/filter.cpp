@@ -11,7 +11,7 @@
 
 class talker_listener{
     private:
-    pcl::PCLPointCloud2 cloud;
+    // pcl::PCLPointCloud2 cloud;
 
     ros::NodeHandle nh;
     ros::Subscriber sub;
@@ -24,14 +24,14 @@ class talker_listener{
             //从PCD文件读
             //sub = nh.subscribe("PCDcloud",10,&talker_listener::raw_cloud_cb,this);
 
-            pub = nh.advertise<sensor_msgs::PointCloud2>("filtered",10);
-        }
+            pub = nh.advertise<sensor_msgs::PointCloud2>("filted",10);
+        };
         void raw_cloud_cb(const sensor_msgs::PointCloud2::ConstPtr &camera_input);
 };
 
 void talker_listener::raw_cloud_cb(const sensor_msgs::PointCloud2::ConstPtr &camera_input){
     //定义对象实现订阅同时发布
-        sensor_msgs::PointCloud2 filtered_cloud;
+        sensor_msgs::PointCloud2 filted_cloud;
     
     //转为PCLPointCloud2格式
         pcl::PCLPointCloud2 cloud;
@@ -41,9 +41,9 @@ void talker_listener::raw_cloud_cb(const sensor_msgs::PointCloud2::ConstPtr &cam
 
         //创建滤波后pointcloud2对象
         pcl::PCLPointCloud2::Ptr cloud_ptr(new pcl::PCLPointCloud2());
-        pcl::PCLPointCloud2::Ptr cloud_passfiltered(new pcl::PCLPointCloud2());
-        pcl::PCLPointCloud2::Ptr cloud_voxelfiltered(new pcl::PCLPointCloud2());
-        pcl::PCLPointCloud2::Ptr cloud_outlierfiltered(new pcl::PCLPointCloud2());
+        pcl::PCLPointCloud2::Ptr cloud_passfilted(new pcl::PCLPointCloud2());
+        pcl::PCLPointCloud2::Ptr cloud_voxelfilted(new pcl::PCLPointCloud2());
+        pcl::PCLPointCloud2::Ptr cloud_outlierfilted(new pcl::PCLPointCloud2());
         *cloud_ptr = cloud;
     
     //进行直通滤波
@@ -52,36 +52,38 @@ void talker_listener::raw_cloud_cb(const sensor_msgs::PointCloud2::ConstPtr &cam
         pass.setFilterFieldName("z");
         pass.setFilterLimits(0.0,1.0);
         pass.setFilterLimitsNegative(false);
-        pass.filter(*cloud_passfiltered);
+        pass.filter(*cloud_passfilted);
 
     //进行体素滤波
         //滤波器
         pcl::VoxelGrid<pcl::PCLPointCloud2> sor;
-        sor.setInputCloud(cloud_passfiltered);//输入
+        sor.setInputCloud(cloud_passfilted);//输入
         sor.setLeafSize(0.01f, 0.01f, 0.01f);//0.01f表示体素为1cm立方体
-        sor.filter(*cloud_voxelfiltered);
+        sor.filter(*cloud_voxelfilted);
 
     //去离群点
         pcl::StatisticalOutlierRemoval<pcl::PCLPointCloud2> outlier_remover;
-        outlier_remover.setInputCloud(cloud_voxelfiltered);
+        outlier_remover.setInputCloud(cloud_voxelfilted);
         outlier_remover.setMeanK(100);
         outlier_remover.setStddevMulThresh(1);
-        outlier_remover.filter(*cloud_outlierfiltered);
+        outlier_remover.filter(*cloud_outlierfilted);
 
     // //保存为PCD文件
-    // pcl::io::savePCDFile("cloud_fileted.pcd",*cloud_outlierfiltered);
+    // pcl::io::savePCDFile("cloud_filted.pcd",*cloud_outlierfilted);
 
     // ROS_INFO("Saved");
     
     //转为sensor_msgs格式发布
-    ros::Rate rate(1);
-    pcl::fromPCLPointCloud2(*cloud_outlierfiltered,temp_cloud);
-    temp_cloud.header.frame_id = "filtered";
-    temp_cloud.is_dense = false;
-    pcl::toROSMsg(temp_cloud,filtered_cloud);
-    pub.publish(filtered_cloud);
-    ROS_INFO("正在发布...");
-    rate.sleep();
+    // ros::Rate rate(1);
+    pcl::fromPCLPointCloud2(*cloud_outlierfilted,temp_cloud);
+    // temp_cloud.header.frame_id = "filtered";
+    // temp_cloud.is_dense = false;
+    pcl::toROSMsg(temp_cloud,filted_cloud);
+    filted_cloud.header.frame_id = "filted";
+    filted_cloud.is_dense = false;
+    pub.publish(filted_cloud);
+    // ROS_INFO("正在发布...");
+    // rate.sleep();
 }
 
 int main(int argc, char *argv[])

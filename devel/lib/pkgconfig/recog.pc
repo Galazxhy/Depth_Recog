@@ -3,6 +3,6 @@ prefix=/home/galazxhy/Depth_Recog/devel
 Name: recog
 Description: Description of recog
 Version: 0.0.0
-Cflags: 
+Cflags: -I/home/galazxhy/Depth_Recog/devel/include
 Libs: -L${prefix}/lib 
-Requires: 
+Requires: pcl_conversions pcl_ros roscpp sensor_msgs std_msgs message_runtime

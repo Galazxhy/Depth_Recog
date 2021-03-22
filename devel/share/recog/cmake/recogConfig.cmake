@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(recog_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT " " STREQUAL " ")
+if(NOT "/home/galazxhy/Depth_Recog/devel/include " STREQUAL " ")
   set(recog_INCLUDE_DIRS "")
-  set(_include_dirs "")
+  set(_include_dirs "/home/galazxhy/Depth_Recog/devel/include")
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -177,7 +177,7 @@ foreach(library ${libraries})
   endif()
 endforeach()
 
-set(recog_EXPORTED_TARGETS "")
+set(recog_EXPORTED_TARGETS "recog_generate_messages_cpp;recog_generate_messages_eus;recog_generate_messages_lisp;recog_generate_messages_nodejs;recog_generate_messages_py")
 # create dummy targets for exported code generation targets to make life of users easier
 foreach(t ${recog_EXPORTED_TARGETS})
   if(NOT TARGET ${t})
@@ -185,7 +185,7 @@ foreach(t ${recog_EXPORTED_TARGETS})
   endif()
 endforeach()
 
-set(depends "")
+set(depends "pcl_conversions;pcl_ros;roscpp;sensor_msgs;std_msgs;message_runtime")
 foreach(depend ${depends})
   string(REPLACE " " ";" depend_list ${depend})
   # the package name of the dependency must be kept in a unique variable so that it is not overwritten in recursive calls
@@ -214,7 +214,7 @@ foreach(depend ${depends})
   list(APPEND recog_EXPORTED_TARGETS ${${recog_dep}_EXPORTED_TARGETS})
 endforeach()
 
-set(pkg_cfg_extras "")
+set(pkg_cfg_extras "recog-msg-extras.cmake")
 foreach(extra ${pkg_cfg_extras})
   if(NOT IS_ABSOLUTE ${extra})
     set(extra ${recog_DIR}/${extra})
