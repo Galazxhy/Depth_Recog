@@ -28,4 +28,4 @@ ROBOMASTER   工程基于深度相机+ROS+PCL矿石识别
 >>对于可能会出现的找不到链接库的问题(妙算上大概率出现),可以通过新建软链接的方式解决<br>
 >>>示例(编译提示缺少libx.so，但设备上有libx.so.1)：<br>
 >>>* sudo ln -s lib.so.1 libx.so<br>
->>>新建了一个名为libx.so的指向libx.so.1的链接，即可解决问题
+>>新建了一个名为libx.so的指向libx.so.1的链接，即可解决问题
