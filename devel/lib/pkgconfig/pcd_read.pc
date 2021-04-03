@@ -1,8 +1,0 @@
-prefix=/home/galazxhy/Depth_Recog/devel
-
-Name: pcd_read
-Description: Description of pcd_read
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

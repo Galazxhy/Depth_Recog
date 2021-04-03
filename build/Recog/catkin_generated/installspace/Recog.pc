@@ -1,8 +1,0 @@
-prefix=/home/galazxhy/Depth_Recog/install
-
-Name: Recog
-Description: Description of Recog
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

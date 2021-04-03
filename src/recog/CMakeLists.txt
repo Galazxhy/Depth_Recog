@@ -131,8 +131,8 @@ include_directories(
 )
 
 ## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/Recog.cpp
+# add_library(cloudtype
+#   include/Recog/cloudtype.h
 # )
 
 ## Add cmake target dependencies of the library
@@ -173,16 +173,16 @@ target_link_libraries(filter
   ${catkin_LIBRARIES}
 )
 target_link_libraries(feature
-  ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${PCL_VISUALIZATION_LIBRARIES}
+  ${catkin_LIBRARIES} ${PCL_LIBRARIES}
 )
 target_link_libraries(solve
-  ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${PCL_VISUALIZATION_LIBRARIES}
+  ${catkin_LIBRARIES} ${PCL_LIBRARIES}
 )
 target_link_libraries(debug
-  ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${PCL_VISUALIZATION_LIBRARIES}
+  ${catkin_LIBRARIES} ${PCL_LIBRARIES}
 )
 target_link_libraries(serial_port  
-  ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${PCL_VISUALIZATION_LIBRARIES}
+  ${catkin_LIBRARIES} ${PCL_LIBRARIES}
 )
 
 
