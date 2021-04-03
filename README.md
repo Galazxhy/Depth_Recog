@@ -9,7 +9,7 @@ ROBOMASTER   工程基于深度相机+ROS+PCL矿石识别
 >>安装完整版的ros自带PCL库
 
 >2.下载项目
->>下载并解压至任意项目中，将.sh文件及.service文件中/home/galazxhy替换为运行用户名（开机自启需用）
+>>下载并解压至任意项目中，将.sh文件及.service文件中/home/galazxhy替换为运行用户名（开机自启需用）<br>
 >>终端中catkin_make
 
 >3.配置头文件及相机驱动
