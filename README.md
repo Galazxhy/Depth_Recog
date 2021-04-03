@@ -14,8 +14,7 @@ ROBOMASTER   工程基于深度相机+ROS+PCL矿石识别
 
 >3.配置头文件及相机驱动
 >>(1)将recog文件夹复制至/devel/include文件夹下
-
->>(2)配置相机驱动（详见ros::astra_camera官网说明http://wiki.ros.org/astra_camera）
+>>(2)配置相机驱动（详见ros::astra_camera官网说明http://wiki.ros.org/astra_camera）<br>
 >>>终端安装相机环境：<br>
 >>>sudo apt install ros-*-rgbd-launch ros-*-libuvc ros-*-libuvc-camera ros-*-libuvc-ros
 >>>由于本项目中已包括了astra_camera功能包，故只需在工作空间中source bash文件，接着roscd进入功能包运行scripts/create_udev_rules即可<br>
