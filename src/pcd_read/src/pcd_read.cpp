@@ -1,9 +1,8 @@
 #include "ros/ros.h"
-#include "sensor_msgs/PointCloud2.h"
 #include "pcl/point_types.h"
-#include "pcl/io/pcd_io.h"
-#include "pcl_conversions/pcl_conversions.h"
 #include "pcl_ros/point_cloud.h"
+#include "pcl_conversions/pcl_conversions.h"
+#include "pcl/io/pcd_io.h"
 // #include "pcl/visualization/pcl_visualizer.h"
 #include <iostream>
 #include <sstream>
@@ -25,10 +24,11 @@ int main(int argc, char*argv[])
 
     //参数指定，读入PCD文件
     // int i = atoi(argv[1]);
-    int i = 1;
+    // int i = 1;
     sensor_msgs::PointCloud2 cloud;
     // if(argc == 2){
-    std::string fname = "cloud" + num2str(i) +".pcd"; 
+    // std::string fname = "cloud" + num2str(i) +".pcd"; 
+    std::string fname = "/home/galazxhy/Depth_Recog/cloud1.pcd"; 
     pcl::io::loadPCDFile(fname,cloud);
     // }
     // else{
@@ -40,31 +40,17 @@ int main(int argc, char*argv[])
     cloud.header.frame_id = "cloud_read";
     cloud.is_dense = false;
 
-    //相机读入以及可视化
-    // pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_view(new pcl::PointCloud<pcl::PointXYZ>);
-    // pcl::fromROSMsg(cloud,*cloud_view);
-    // boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer(new pcl::visualization::PCLVisualizer("Viewer"));
-
-    // viewer->setBackgroundColor(0,0,0);
-    // viewer->addPointCloud(cloud_view,"sample");
-
-    // viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2 ,"sample cloud");
-    
-    // viewer->addCoordinateSystem(1.0);
-
-    // viewer->initCameraParameters();
-
     //设置发布频率
     ros::Rate rate(0.5);
 
     while(ros::ok()){
-         i++;
+        //  i++;
     pub.publish(cloud);
     ROS_INFO("已发布...");
 
         rate.sleep();
      }
 
-    ros::spin();
+    ros::spinOnce();
     return 0;
 }

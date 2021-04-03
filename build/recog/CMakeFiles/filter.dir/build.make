@@ -306,6 +306,7 @@ filter_EXTERNAL_OBJECTS =
 /home/galazxhy/Depth_Recog/devel/lib/recog/filter: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
 /home/galazxhy/Depth_Recog/devel/lib/recog/filter: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/galazxhy/Depth_Recog/devel/lib/recog/filter: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
+/home/galazxhy/Depth_Recog/devel/lib/recog/filter: /opt/ros/melodic/lib/libserial.so
 /home/galazxhy/Depth_Recog/devel/lib/recog/filter: recog/CMakeFiles/filter.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/galazxhy/Depth_Recog/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/galazxhy/Depth_Recog/devel/lib/recog/filter"
 	cd /home/galazxhy/Depth_Recog/build/recog && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/filter.dir/link.txt --verbose=$(VERBOSE)

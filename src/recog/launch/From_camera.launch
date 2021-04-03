@@ -1,5 +1,9 @@
 <launch>
     <include file="$(find astra_camera)/launch/astra.launch" />
+    <!-- <node pkg = "pcd_read" type = "pcd_read" name = "pcd_reader" output = "screen"/> -->
     <node pkg = "recog" type = "filter" name = "cloud_filter" output = "screen"/>
     <node pkg = "recog" type = "feature" name = "cloud_feature" output = "screen"/>
+    <node pkg = "recog" type = "solve" name = "position_solve" output = "screen"/>
+    <node pkg = "recog" type = "debug" name = "debug" output = "screen"/>
+    <node pkg = "recog" type = "serial_port" name = "serial_port" output = "screen"/>
 </launch>

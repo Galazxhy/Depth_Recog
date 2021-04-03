@@ -14,7 +14,9 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   std_msgs
   message_generation
+  serial
 )
+find_package(PCL REQUIRED COMPONENTS keypoints)
 # find_package(PCL REQUIRED COMPONENTS 
 #   io
 #   common
@@ -144,6 +146,9 @@ include_directories(
 # add_executable(${PROJECT_NAME}_node src/Recog_node.cpp)
 add_executable(filter src/filter.cpp)
 add_executable(feature src/feature.cpp)
+add_executable(solve src/solve.cpp)
+add_executable(debug src/debug.cpp)
+add_executable(serial_port src/serial_port.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -156,6 +161,9 @@ add_executable(feature src/feature.cpp)
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(filter ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(feature ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(solve ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(debug ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(serial_port ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
@@ -167,6 +175,16 @@ target_link_libraries(filter
 target_link_libraries(feature
   ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${PCL_VISUALIZATION_LIBRARIES}
 )
+target_link_libraries(solve
+  ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${PCL_VISUALIZATION_LIBRARIES}
+)
+target_link_libraries(debug
+  ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${PCL_VISUALIZATION_LIBRARIES}
+)
+target_link_libraries(serial_port  
+  ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${PCL_VISUALIZATION_LIBRARIES}
+)
+
 
 
 #############

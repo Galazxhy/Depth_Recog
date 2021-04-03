@@ -24,14 +24,27 @@ struct Position_
   typedef Position_<ContainerAllocator> Type;
 
   Position_()
-    {
+    : theta(0.0)
+    , alpha(0.0)
+    , distance(0.0)  {
     }
   Position_(const ContainerAllocator& _alloc)
-    {
+    : theta(0.0)
+    , alpha(0.0)
+    , distance(0.0)  {
   (void)_alloc;
     }
 
 
+
+   typedef double _theta_type;
+  _theta_type theta;
+
+   typedef double _alpha_type;
+  _alpha_type alpha;
+
+   typedef double _distance_type;
+  _distance_type distance;
 
 
 
@@ -56,6 +69,21 @@ std::ostream& operator<<(std::ostream& s, const ::recog::Position_<ContainerAllo
 {
 ros::message_operations::Printer< ::recog::Position_<ContainerAllocator> >::stream(s, "", v);
 return s;
+}
+
+
+template<typename ContainerAllocator1, typename ContainerAllocator2>
+bool operator==(const ::recog::Position_<ContainerAllocator1> & lhs, const ::recog::Position_<ContainerAllocator2> & rhs)
+{
+  return lhs.theta == rhs.theta &&
+    lhs.alpha == rhs.alpha &&
+    lhs.distance == rhs.distance;
+}
+
+template<typename ContainerAllocator1, typename ContainerAllocator2>
+bool operator!=(const ::recog::Position_<ContainerAllocator1> & lhs, const ::recog::Position_<ContainerAllocator2> & rhs)
+{
+  return !(lhs == rhs);
 }
 
 
@@ -106,12 +134,12 @@ struct MD5Sum< ::recog::Position_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "d41d8cd98f00b204e9800998ecf8427e";
+    return "81d9e56e69a7c53642d195f1f0bb7a27";
   }
 
   static const char* value(const ::recog::Position_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xd41d8cd98f00b204ULL;
-  static const uint64_t static_value2 = 0xe9800998ecf8427eULL;
+  static const uint64_t static_value1 = 0x81d9e56e69a7c536ULL;
+  static const uint64_t static_value2 = 0x42d195f1f0bb7a27ULL;
 };
 
 template<class ContainerAllocator>
@@ -130,7 +158,9 @@ struct Definition< ::recog::Position_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "\n"
+    return "float64 theta\n"
+"float64 alpha\n"
+"float64 distance\n"
 ;
   }
 
@@ -147,8 +177,12 @@ namespace serialization
 
   template<class ContainerAllocator> struct Serializer< ::recog::Position_<ContainerAllocator> >
   {
-    template<typename Stream, typename T> inline static void allInOne(Stream&, T)
-    {}
+    template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
+    {
+      stream.next(m.theta);
+      stream.next(m.alpha);
+      stream.next(m.distance);
+    }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
   }; // struct Position_
@@ -164,8 +198,15 @@ namespace message_operations
 template<class ContainerAllocator>
 struct Printer< ::recog::Position_<ContainerAllocator> >
 {
-  template<typename Stream> static void stream(Stream&, const std::string&, const ::recog::Position_<ContainerAllocator>&)
-  {}
+  template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::recog::Position_<ContainerAllocator>& v)
+  {
+    s << indent << "theta: ";
+    Printer<double>::stream(s, indent + "  ", v.theta);
+    s << indent << "alpha: ";
+    Printer<double>::stream(s, indent + "  ", v.alpha);
+    s << indent << "distance: ";
+    Printer<double>::stream(s, indent + "  ", v.distance);
+  }
 };
 
 } // namespace message_operations

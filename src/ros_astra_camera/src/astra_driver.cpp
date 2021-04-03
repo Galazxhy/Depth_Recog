@@ -110,7 +110,7 @@ AstraDriver::AstraDriver(ros::NodeHandle& n, ros::NodeHandle& pnh) :
 			}
 
 			 initDevice();
-			 ROS_INFO("*********** device_id %s already open device************************ ", device_id_.c_str());
+			//  ROS_INFO("*********** device_id %s already open device************************ ", device_id_.c_str());
 			*shm = (bootOrder+1);
 		}
 		if(  bootOrder==devnums )

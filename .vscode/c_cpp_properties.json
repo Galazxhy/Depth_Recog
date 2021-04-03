@@ -9,8 +9,7 @@
         "/home/galazxhy/Depth_Recog/devel/include/**",
         "/opt/ros/melodic/include/**",
         "/home/galazxhy/Depth_Recog/src/ros_astra_camera/include/**",
-        "/usr/include/**",
-        "/home/galazxhy/Depth_Recog/devel/include/**"
+        "/usr/include/**"
       ],
       "name": "ROS",
       "cppStandard": "c++17"

@@ -113,7 +113,7 @@ public:
 
     const AstraDeviceInfo device_info_wrapped = astra_convert(pInfo);
 
-    ROS_INFO("Device \"%s\" found.", pInfo->getUri());
+    // ROS_INFO("Device \"%s\" found.", pInfo->getUri());
 
     // make sure it does not exist in set before inserting
     device_set_.erase(device_info_wrapped);

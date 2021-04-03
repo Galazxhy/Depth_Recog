@@ -1832,17 +1832,17 @@ tf2_msgs_generate_messages_lisp/fast:
 .PHONY : tf2_msgs_generate_messages_lisp/fast
 
 #=============================================================================
-# Target rules for targets named recog_genlisp
+# Target rules for targets named serial_port
 
 # Build rule for target.
-recog_genlisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 recog_genlisp
-.PHONY : recog_genlisp
+serial_port: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 serial_port
+.PHONY : serial_port
 
 # fast build rule for target.
-recog_genlisp/fast:
-	$(MAKE) -f recog/CMakeFiles/recog_genlisp.dir/build.make recog/CMakeFiles/recog_genlisp.dir/build
-.PHONY : recog_genlisp/fast
+serial_port/fast:
+	$(MAKE) -f recog/CMakeFiles/serial_port.dir/build.make recog/CMakeFiles/serial_port.dir/build
+.PHONY : serial_port/fast
 
 #=============================================================================
 # Target rules for targets named recog_geneus
@@ -1856,6 +1856,32 @@ recog_geneus: cmake_check_build_system
 recog_geneus/fast:
 	$(MAKE) -f recog/CMakeFiles/recog_geneus.dir/build.make recog/CMakeFiles/recog_geneus.dir/build
 .PHONY : recog_geneus/fast
+
+#=============================================================================
+# Target rules for targets named recog_genlisp
+
+# Build rule for target.
+recog_genlisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 recog_genlisp
+.PHONY : recog_genlisp
+
+# fast build rule for target.
+recog_genlisp/fast:
+	$(MAKE) -f recog/CMakeFiles/recog_genlisp.dir/build.make recog/CMakeFiles/recog_genlisp.dir/build
+.PHONY : recog_genlisp/fast
+
+#=============================================================================
+# Target rules for targets named debug
+
+# Build rule for target.
+debug: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 debug
+.PHONY : debug
+
+# fast build rule for target.
+debug/fast:
+	$(MAKE) -f recog/CMakeFiles/debug.dir/build.make recog/CMakeFiles/debug.dir/build
+.PHONY : debug/fast
 
 #=============================================================================
 # Target rules for targets named recog_generate_messages
@@ -1910,6 +1936,19 @@ filter/fast:
 .PHONY : filter/fast
 
 #=============================================================================
+# Target rules for targets named recog_generate_messages_py
+
+# Build rule for target.
+recog_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 recog_generate_messages_py
+.PHONY : recog_generate_messages_py
+
+# fast build rule for target.
+recog_generate_messages_py/fast:
+	$(MAKE) -f recog/CMakeFiles/recog_generate_messages_py.dir/build.make recog/CMakeFiles/recog_generate_messages_py.dir/build
+.PHONY : recog_generate_messages_py/fast
+
+#=============================================================================
 # Target rules for targets named recog_generate_messages_cpp
 
 # Build rule for target.
@@ -1936,17 +1975,17 @@ recog_gennodejs/fast:
 .PHONY : recog_gennodejs/fast
 
 #=============================================================================
-# Target rules for targets named recog_generate_messages_py
+# Target rules for targets named solve
 
 # Build rule for target.
-recog_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 recog_generate_messages_py
-.PHONY : recog_generate_messages_py
+solve: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 solve
+.PHONY : solve
 
 # fast build rule for target.
-recog_generate_messages_py/fast:
-	$(MAKE) -f recog/CMakeFiles/recog_generate_messages_py.dir/build.make recog/CMakeFiles/recog_generate_messages_py.dir/build
-.PHONY : recog_generate_messages_py/fast
+solve/fast:
+	$(MAKE) -f recog/CMakeFiles/solve.dir/build.make recog/CMakeFiles/solve.dir/build
+.PHONY : solve/fast
 
 #=============================================================================
 # Target rules for targets named recog_genpy
@@ -2154,15 +2193,18 @@ help:
 	@echo "... tf2_msgs_generate_messages_cpp"
 	@echo "... tf2_msgs_generate_messages_py"
 	@echo "... tf2_msgs_generate_messages_lisp"
-	@echo "... recog_genlisp"
+	@echo "... serial_port"
 	@echo "... recog_geneus"
+	@echo "... recog_genlisp"
+	@echo "... debug"
 	@echo "... recog_generate_messages"
 	@echo "... _recog_generate_messages_check_deps_Position"
 	@echo "... recog_generate_messages_lisp"
 	@echo "... filter"
+	@echo "... recog_generate_messages_py"
 	@echo "... recog_generate_messages_cpp"
 	@echo "... recog_gennodejs"
-	@echo "... recog_generate_messages_py"
+	@echo "... solve"
 	@echo "... recog_genpy"
 	@echo "... recog_generate_messages_eus"
 	@echo "... recog_gencpp"

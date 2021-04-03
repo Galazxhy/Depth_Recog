@@ -92,6 +92,17 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -123,17 +134,6 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,19 +168,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-recog/CMakeFiles/recog_genlisp.dir/rule:
-	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/recog_genlisp.dir/rule
-.PHONY : recog/CMakeFiles/recog_genlisp.dir/rule
+recog/CMakeFiles/serial_port.dir/rule:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/serial_port.dir/rule
+.PHONY : recog/CMakeFiles/serial_port.dir/rule
 
 # Convenience name for target.
-recog_genlisp: recog/CMakeFiles/recog_genlisp.dir/rule
+serial_port: recog/CMakeFiles/serial_port.dir/rule
 
-.PHONY : recog_genlisp
+.PHONY : serial_port
 
 # fast build rule for target.
-recog_genlisp/fast:
-	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/recog_genlisp.dir/build.make recog/CMakeFiles/recog_genlisp.dir/build
-.PHONY : recog_genlisp/fast
+serial_port/fast:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/serial_port.dir/build.make recog/CMakeFiles/serial_port.dir/build
+.PHONY : serial_port/fast
 
 # Convenience name for target.
 recog/CMakeFiles/recog_geneus.dir/rule:
@@ -196,6 +196,36 @@ recog_geneus: recog/CMakeFiles/recog_geneus.dir/rule
 recog_geneus/fast:
 	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/recog_geneus.dir/build.make recog/CMakeFiles/recog_geneus.dir/build
 .PHONY : recog_geneus/fast
+
+# Convenience name for target.
+recog/CMakeFiles/recog_genlisp.dir/rule:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/recog_genlisp.dir/rule
+.PHONY : recog/CMakeFiles/recog_genlisp.dir/rule
+
+# Convenience name for target.
+recog_genlisp: recog/CMakeFiles/recog_genlisp.dir/rule
+
+.PHONY : recog_genlisp
+
+# fast build rule for target.
+recog_genlisp/fast:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/recog_genlisp.dir/build.make recog/CMakeFiles/recog_genlisp.dir/build
+.PHONY : recog_genlisp/fast
+
+# Convenience name for target.
+recog/CMakeFiles/debug.dir/rule:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/debug.dir/rule
+.PHONY : recog/CMakeFiles/debug.dir/rule
+
+# Convenience name for target.
+debug: recog/CMakeFiles/debug.dir/rule
+
+.PHONY : debug
+
+# fast build rule for target.
+debug/fast:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/debug.dir/build.make recog/CMakeFiles/debug.dir/build
+.PHONY : debug/fast
 
 # Convenience name for target.
 recog/CMakeFiles/recog_generate_messages.dir/rule:
@@ -258,6 +288,21 @@ filter/fast:
 .PHONY : filter/fast
 
 # Convenience name for target.
+recog/CMakeFiles/recog_generate_messages_py.dir/rule:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/recog_generate_messages_py.dir/rule
+.PHONY : recog/CMakeFiles/recog_generate_messages_py.dir/rule
+
+# Convenience name for target.
+recog_generate_messages_py: recog/CMakeFiles/recog_generate_messages_py.dir/rule
+
+.PHONY : recog_generate_messages_py
+
+# fast build rule for target.
+recog_generate_messages_py/fast:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/recog_generate_messages_py.dir/build.make recog/CMakeFiles/recog_generate_messages_py.dir/build
+.PHONY : recog_generate_messages_py/fast
+
+# Convenience name for target.
 recog/CMakeFiles/recog_generate_messages_cpp.dir/rule:
 	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/recog_generate_messages_cpp.dir/rule
 .PHONY : recog/CMakeFiles/recog_generate_messages_cpp.dir/rule
@@ -288,19 +333,19 @@ recog_gennodejs/fast:
 .PHONY : recog_gennodejs/fast
 
 # Convenience name for target.
-recog/CMakeFiles/recog_generate_messages_py.dir/rule:
-	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/recog_generate_messages_py.dir/rule
-.PHONY : recog/CMakeFiles/recog_generate_messages_py.dir/rule
+recog/CMakeFiles/solve.dir/rule:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f CMakeFiles/Makefile2 recog/CMakeFiles/solve.dir/rule
+.PHONY : recog/CMakeFiles/solve.dir/rule
 
 # Convenience name for target.
-recog_generate_messages_py: recog/CMakeFiles/recog_generate_messages_py.dir/rule
+solve: recog/CMakeFiles/solve.dir/rule
 
-.PHONY : recog_generate_messages_py
+.PHONY : solve
 
 # fast build rule for target.
-recog_generate_messages_py/fast:
-	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/recog_generate_messages_py.dir/build.make recog/CMakeFiles/recog_generate_messages_py.dir/build
-.PHONY : recog_generate_messages_py/fast
+solve/fast:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/solve.dir/build.make recog/CMakeFiles/solve.dir/build
+.PHONY : solve/fast
 
 # Convenience name for target.
 recog/CMakeFiles/recog_genpy.dir/rule:
@@ -377,6 +422,33 @@ feature/fast:
 	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/feature.dir/build.make recog/CMakeFiles/feature.dir/build
 .PHONY : feature/fast
 
+src/debug.o: src/debug.cpp.o
+
+.PHONY : src/debug.o
+
+# target to build an object file
+src/debug.cpp.o:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/debug.dir/build.make recog/CMakeFiles/debug.dir/src/debug.cpp.o
+.PHONY : src/debug.cpp.o
+
+src/debug.i: src/debug.cpp.i
+
+.PHONY : src/debug.i
+
+# target to preprocess a source file
+src/debug.cpp.i:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/debug.dir/build.make recog/CMakeFiles/debug.dir/src/debug.cpp.i
+.PHONY : src/debug.cpp.i
+
+src/debug.s: src/debug.cpp.s
+
+.PHONY : src/debug.s
+
+# target to generate assembly for a file
+src/debug.cpp.s:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/debug.dir/build.make recog/CMakeFiles/debug.dir/src/debug.cpp.s
+.PHONY : src/debug.cpp.s
+
 src/feature.o: src/feature.cpp.o
 
 .PHONY : src/feature.o
@@ -431,6 +503,60 @@ src/filter.cpp.s:
 	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/filter.dir/build.make recog/CMakeFiles/filter.dir/src/filter.cpp.s
 .PHONY : src/filter.cpp.s
 
+src/serial_port.o: src/serial_port.cpp.o
+
+.PHONY : src/serial_port.o
+
+# target to build an object file
+src/serial_port.cpp.o:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/serial_port.dir/build.make recog/CMakeFiles/serial_port.dir/src/serial_port.cpp.o
+.PHONY : src/serial_port.cpp.o
+
+src/serial_port.i: src/serial_port.cpp.i
+
+.PHONY : src/serial_port.i
+
+# target to preprocess a source file
+src/serial_port.cpp.i:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/serial_port.dir/build.make recog/CMakeFiles/serial_port.dir/src/serial_port.cpp.i
+.PHONY : src/serial_port.cpp.i
+
+src/serial_port.s: src/serial_port.cpp.s
+
+.PHONY : src/serial_port.s
+
+# target to generate assembly for a file
+src/serial_port.cpp.s:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/serial_port.dir/build.make recog/CMakeFiles/serial_port.dir/src/serial_port.cpp.s
+.PHONY : src/serial_port.cpp.s
+
+src/solve.o: src/solve.cpp.o
+
+.PHONY : src/solve.o
+
+# target to build an object file
+src/solve.cpp.o:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/solve.dir/build.make recog/CMakeFiles/solve.dir/src/solve.cpp.o
+.PHONY : src/solve.cpp.o
+
+src/solve.i: src/solve.cpp.i
+
+.PHONY : src/solve.i
+
+# target to preprocess a source file
+src/solve.cpp.i:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/solve.dir/build.make recog/CMakeFiles/solve.dir/src/solve.cpp.i
+.PHONY : src/solve.cpp.i
+
+src/solve.s: src/solve.cpp.s
+
+.PHONY : src/solve.s
+
+# target to generate assembly for a file
+src/solve.cpp.s:
+	cd /home/galazxhy/Depth_Recog/build && $(MAKE) -f recog/CMakeFiles/solve.dir/build.make recog/CMakeFiles/solve.dir/src/solve.cpp.s
+.PHONY : src/solve.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -440,30 +566,42 @@ help:
 	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... install"
+	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... recog_genlisp"
-	@echo "... recog_geneus"
+	@echo "... serial_port"
 	@echo "... test"
+	@echo "... recog_geneus"
+	@echo "... recog_genlisp"
+	@echo "... debug"
 	@echo "... recog_generate_messages"
 	@echo "... _recog_generate_messages_check_deps_Position"
 	@echo "... recog_generate_messages_lisp"
 	@echo "... filter"
+	@echo "... recog_generate_messages_py"
 	@echo "... list_install_components"
 	@echo "... recog_generate_messages_cpp"
 	@echo "... recog_gennodejs"
-	@echo "... recog_generate_messages_py"
+	@echo "... solve"
 	@echo "... recog_genpy"
-	@echo "... edit_cache"
 	@echo "... recog_generate_messages_eus"
 	@echo "... recog_gencpp"
 	@echo "... recog_generate_messages_nodejs"
 	@echo "... feature"
+	@echo "... src/debug.o"
+	@echo "... src/debug.i"
+	@echo "... src/debug.s"
 	@echo "... src/feature.o"
 	@echo "... src/feature.i"
 	@echo "... src/feature.s"
 	@echo "... src/filter.o"
 	@echo "... src/filter.i"
 	@echo "... src/filter.s"
+	@echo "... src/serial_port.o"
+	@echo "... src/serial_port.i"
+	@echo "... src/serial_port.s"
+	@echo "... src/solve.o"
+	@echo "... src/solve.i"
+	@echo "... src/solve.s"
 .PHONY : help
 
 

@@ -1,2 +1,8 @@
 (cl:in-package recog-msg)
-(cl:export '())
+(cl:export '(THETA-VAL
+          THETA
+          ALPHA-VAL
+          ALPHA
+          DISTANCE-VAL
+          DISTANCE
+))
