@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 target::target(){
     theta = 0.0f;
     alpha = 0.0f;
-    distance = 0.0f;
+    distance = -1.0f;
 }
 
 
@@ -65,18 +65,19 @@ void target::solve(const TypeXYZ::ConstPtr &input_cloud ){
     }
     else if(Keypoints->size() > 5){
         //多个目标
-        center = {0, 0, 0};
+        center = {0.0f, 0.0f, -1.0f};
     }
     else if(Keypoints->size() <4){
         ROS_INFO("None Detection!\n");
-        center = {0,0,0};
+        center = {0.0f,0.0f,-1.0f};
     }
     angle_solve(center);
 }
 
 //转为俯仰、偏航与距离
 void target::angle_solve(const pcl::PointXYZ & center){
-    theta = atan(center.z/sqrt(pow(2,center.x)+pow(2,center.y)));
+    if(sqrt(pow(2,center.x)+pow(2,center.y)));
+        theta = atan(center.z/sqrt(pow(2,center.x)+pow(2,center.y)));
     alpha = atan(abs(center.x)/center.z);
     distance = center.z;
 }
@@ -143,38 +144,38 @@ pcl::PointXYZ cal_center(std::vector<pcl::PointXYZ> & keypoints){
     //找最值
     auto max_x_pos = std::max_element(x_ls.begin(),x_ls.end());
     auto min_x_pos = std::min_element(x_ls.begin(),x_ls.end());
-    ROS_INFO("MAX_X:%.2f,MIN_X:%.2f",*max_x_pos,*min_x_pos);
+    // ROS_INFO("MAX_X:%.2f,MIN_X:%.2f",*max_x_pos,*min_x_pos);
 
     //排除误识别
     if((*max_x_pos - *min_x_pos) < 0.08 || (*max_x_pos - *min_x_pos) > 0.25){
-        ROS_INFO("X error");
+        // ROS_INFO("X error");
         center.x = 0;
         center.y = 0;
-        center.z = 0;
+        center.z = -1;
         return center;
     }
 
     auto max_y_pos = max_element(y_ls.begin(),y_ls.end());
     auto min_y_pos = min_element(y_ls.begin(),y_ls.end());
-    ROS_INFO("MAX_Y:%.2f,MIN_Y:%.2f",*max_y_pos,*min_y_pos);
+    // ROS_INFO("MAX_Y:%.2f,MIN_Y:%.2f",*max_y_pos,*min_y_pos);
 
     if((*max_y_pos - *min_y_pos) < 0.03 || (*max_y_pos - *min_y_pos) > 0.1){
-        ROS_INFO("y error");
+        // ROS_INFO("y error");
         center.x = 0;
         center.y = 0;
-        center.z = 0;
+        center.z = -1;
         return center;
     }
 
     auto max_z_pos = max_element(z_ls.begin(),z_ls.end());
     auto min_z_pos = min_element(z_ls.begin(),z_ls.end());
-     ROS_INFO("MAX_Z:%.2f,MIN_Z:%.2f",*max_z_pos,*min_z_pos);
+    //  ROS_INFO("MAX_Z:%.2f,MIN_Z:%.2f",*max_z_pos,*min_z_pos);
 
     if((*max_z_pos - *min_z_pos) > 0.15){
-        ROS_INFO("Z error");
+        // ROS_INFO("Z error");
         center.x = 0;
         center.y = 0;
-        center.z = 0;
+        center.z = -1;
         return center;
     }
 
@@ -182,7 +183,7 @@ pcl::PointXYZ cal_center(std::vector<pcl::PointXYZ> & keypoints){
     center.y = accumulate(y_ls.begin(),y_ls.end(),0.0f)/keypoints.size();
     center.z = accumulate(z_ls.begin(),z_ls.end(),0.0f)/keypoints.size();
 
-    ROS_INFO("X_center:%.2f, Y_center:%.2f, Z_center:%.2f",center.x,center.y,center.z);
+    // ROS_INFO("X_center:%.2f, Y_center:%.2f, Z_center:%.2f",center.x,center.y,center.z);
 
     return center;
 }
