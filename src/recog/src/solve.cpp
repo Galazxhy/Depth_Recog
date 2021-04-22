@@ -52,7 +52,7 @@ void target::solve(const TypeXYZ::ConstPtr &input_cloud ){
     TypeXYZ::Ptr Keypoints(new TypeXYZ);
     *Keypoints = Keypoint_Extraction(input_cloud);
     pcl::PointXYZ center;
-    ROS_INFO("size:%d\n",Keypoints->size());
+    // ROS_INFO("size:%d\n",Keypoints->size());
     //容器保存关键点
     if(Keypoints->size() == 4| Keypoints->size()==5){
         std::vector<pcl::PointXYZ> keypoints_vec;
@@ -61,7 +61,7 @@ void target::solve(const TypeXYZ::ConstPtr &input_cloud ){
             keypoints_vec.push_back(Keypoint);
         }
         center = cal_center(keypoints_vec);
-        ROS_INFO("center:%.2f,%.2f,%.2f",center.x,center.y,center.z);
+        // ROS_INFO("center:%.2f,%.2f,%.2f",center.x,center.y,center.z);
     }
     else if(Keypoints->size() > 5){
         //多个目标
@@ -139,7 +139,7 @@ pcl::PointXYZ cal_center(std::vector<pcl::PointXYZ> & keypoints){
         x_ls.push_back(keypoint.x);
         y_ls.push_back(keypoint.y);
         z_ls.push_back(keypoint.z);
-        ROS_INFO("%.4f, %.4f, %.4f",keypoint.x,keypoint.y,keypoint.z);
+        // ROS_INFO("%.4f, %.4f, %.4f",keypoint.x,keypoint.y,keypoint.z);
     }
     //找最值
     auto max_x_pos = std::max_element(x_ls.begin(),x_ls.end());
