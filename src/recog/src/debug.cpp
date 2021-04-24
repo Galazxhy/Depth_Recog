@@ -2,7 +2,7 @@
 #include "recog/Position.h"
 
 void debug_cb(const recog::Position::ConstPtr &input){
-    ROS_INFO("Theta = %.2f, Alpha = %.2f, Distance = %.2f",input->alpha,input->theta,input->distance);
+    ROS_INFO("Theta = %.2f, Alpha = %.2f, Distance = %.2f",input->theta,input->alpha,input->distance);
 }
 
 int main(int argc, char *argv[])

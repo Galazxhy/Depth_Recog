@@ -76,10 +76,16 @@ void target::solve(const TypeXYZ::ConstPtr &input_cloud ){
 
 //转为俯仰、偏航与距离
 void target::angle_solve(const pcl::PointXYZ & center){
-    if(sqrt(pow(2,center.x)+pow(2,center.y)));
-        theta = atan(center.z/sqrt(pow(2,center.x)+pow(2,center.y)));
-    alpha = atan(abs(center.x)/center.z);
+    if(center.z != -1.0) 
+        alpha = atan(center.z/sqrt(pow(2,center.x)+pow(2,center.y)));
+    else
+        alpha = 0.0f;
+    std::printf("solve_theta = %f",theta);
+    if(center.z != -1.0f)
+        theta= atan(abs(center.x)/center.z);
+    std::printf("solve_alpha = %f",alpha);
     distance = center.z;
+    std::printf("solve_distance = %f",distance);
 }
 
 //关键点提取，返回关键点索引（角点）
