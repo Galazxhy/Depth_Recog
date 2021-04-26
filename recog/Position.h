@@ -24,26 +24,26 @@ struct Position_
   typedef Position_<ContainerAllocator> Type;
 
   Position_()
-    : theta(0.0)
-    , alpha(0.0)
+    : pitch(0.0)
+    , yaw(0.0)
     , distance(0.0)  {
     }
   Position_(const ContainerAllocator& _alloc)
-    : theta(0.0)
-    , alpha(0.0)
+    : pitch(0.0)
+    , yaw(0.0)
     , distance(0.0)  {
   (void)_alloc;
     }
 
 
 
-   typedef double _theta_type;
-  _theta_type theta;
+   typedef float _pitch_type;
+  _pitch_type pitch;
 
-   typedef double _alpha_type;
-  _alpha_type alpha;
+   typedef float _yaw_type;
+  _yaw_type yaw;
 
-   typedef double _distance_type;
+   typedef float _distance_type;
   _distance_type distance;
 
 
@@ -75,8 +75,8 @@ return s;
 template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::recog::Position_<ContainerAllocator1> & lhs, const ::recog::Position_<ContainerAllocator2> & rhs)
 {
-  return lhs.theta == rhs.theta &&
-    lhs.alpha == rhs.alpha &&
+  return lhs.pitch == rhs.pitch &&
+    lhs.yaw == rhs.yaw &&
     lhs.distance == rhs.distance;
 }
 
@@ -134,12 +134,12 @@ struct MD5Sum< ::recog::Position_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "81d9e56e69a7c53642d195f1f0bb7a27";
+    return "ad823f8c25b65aa56498330a08801ed1";
   }
 
   static const char* value(const ::recog::Position_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x81d9e56e69a7c536ULL;
-  static const uint64_t static_value2 = 0x42d195f1f0bb7a27ULL;
+  static const uint64_t static_value1 = 0xad823f8c25b65aa5ULL;
+  static const uint64_t static_value2 = 0x6498330a08801ed1ULL;
 };
 
 template<class ContainerAllocator>
@@ -158,9 +158,9 @@ struct Definition< ::recog::Position_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "float64 theta\n"
-"float64 alpha\n"
-"float64 distance\n"
+    return "float32 pitch\n"
+"float32 yaw\n"
+"float32 distance\n"
 ;
   }
 
@@ -179,8 +179,8 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.theta);
-      stream.next(m.alpha);
+      stream.next(m.pitch);
+      stream.next(m.yaw);
       stream.next(m.distance);
     }
 
@@ -200,12 +200,12 @@ struct Printer< ::recog::Position_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::recog::Position_<ContainerAllocator>& v)
   {
-    s << indent << "theta: ";
-    Printer<double>::stream(s, indent + "  ", v.theta);
-    s << indent << "alpha: ";
-    Printer<double>::stream(s, indent + "  ", v.alpha);
+    s << indent << "pitch: ";
+    Printer<float>::stream(s, indent + "  ", v.pitch);
+    s << indent << "yaw: ";
+    Printer<float>::stream(s, indent + "  ", v.yaw);
     s << indent << "distance: ";
-    Printer<double>::stream(s, indent + "  ", v.distance);
+    Printer<float>::stream(s, indent + "  ", v.distance);
   }
 };
 

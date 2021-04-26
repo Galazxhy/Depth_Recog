@@ -10,9 +10,13 @@
 
 //segmentation
 #include "pcl/ModelCoefficients.h"
+#include "pcl/features/normal_3d.h"
 #include "pcl/sample_consensus/method_types.h"
 #include "pcl/sample_consensus/model_types.h"
 #include "pcl/segmentation/sac_segmentation.h"
+#include "pcl/segmentation/region_growing.h"
+#include "pcl/search/search.h"
+#include "pcl/search/kdtree.h"
 
 //filters
 #include "pcl/filters/voxel_grid.h"
@@ -30,26 +34,14 @@
 //Serial
 #include "recog/serial_port.h"
 
-//recognition
-// #include "pcl/features/shot_omp.h"
-// #include "pcl/correspondence.h"
-// #include "pcl/features/normal_3d.h"
-// #include "pcl/features/board.h"
-// #include "pcl/filters/uniform_sampling.h"
-// #include "pcl/recognition/cg/hough_3d.h"
-// #include "pcl/recognition/cg/geometric_consistency.h"
-// #include "pcl/kdtree/kdtree_flann.h"
-// #include "pcl/kdtree/impl/kdtree_flann.hpp"
-// #include "pcl/common/transforms.h"
-// #include "pcl/console/parse.h"
-// #include "pcl/visualization/pcl_visualizer.h"
+//visualizer
 // #include "pcl/visualization/cloud_viewer.h"
 
 typedef pcl::PointCloud<pcl::PointXYZ> TypeXYZ;
 typedef pcl::PCLPointCloud2 TypePC2;
 
 //平面聚类分割
-TypeXYZ Plane_segmentation(const TypeXYZ::ConstPtr &input_cloud);
+bool Plane_segmentation(const TypeXYZ::ConstPtr &input_cloud);
 
 //去离群点
 TypeXYZ outlier_fileter(const TypeXYZ::ConstPtr &input_cloud);
@@ -57,17 +49,25 @@ TypeXYZ outlier_fileter(const TypeXYZ::ConstPtr &input_cloud);
 //Transform
 TypeXYZ transform(const TypeXYZ::ConstPtr &input_cloud);
 
+//关键点提取
 TypeXYZ Keypoint_Extraction(const TypeXYZ::ConstPtr &input_cloud);
 
+//区域生长分割
+std::vector<TypeXYZ> region_growing(const TypeXYZ::ConstPtr &input_cloud);
+
+//计算中心点
 pcl::PointXYZ cal_center(std::vector<pcl::PointXYZ> & keypoints);
 
 //目标类
 class target{
     public:
-        float theta;
-        float alpha;
+        float pitch;
+        float yaw;
         float distance;
+        int score;
         target();
         void solve(const TypeXYZ::ConstPtr &input_cloud);
         void angle_solve(const pcl::PointXYZ & center);
+        void cal_score(const pcl::PointXYZ &center);
 };
+
