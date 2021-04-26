@@ -1,5 +1,10 @@
 #include "recog/cloudtype.h"
 #include "recog/Position.h"
+#include "recog/clouds.h"
+
+#define pitch_score 10000
+#define yaw_score 5000
+#define distance_score 8000
 
 class talker_listener{
     private:
@@ -8,29 +13,64 @@ class talker_listener{
         ros::Subscriber sub;
     public:
         talker_listener(){
-            sub = nh.subscribe("feature",10,&talker_listener::solve_cb,this);
+            sub = nh.subscribe("seg_feature",10,&talker_listener::solve_cb,this);
             pub = nh.advertise<recog::Position>("position_msg",10,this);        
         }
-        void solve_cb(const sensor_msgs::PointCloud2::ConstPtr &input_cloud);
+        void solve_cb(const recog::clouds::ConstPtr &input_clouds);
 };
 
 
-
-void talker_listener::solve_cb(const sensor_msgs::PointCloud2::ConstPtr &input_cloud){
+//回调函数
+void talker_listener::solve_cb(const recog::clouds::ConstPtr &input_clouds){
+    //初始化，读取点云数组
+    // ROS_INFO("received : %d",input_clouds->clouds.size());
     TypeXYZ::Ptr cloud(new TypeXYZ);
-    pcl::fromROSMsg(*input_cloud,*cloud);
-    
-    target target;
-    target.solve(cloud);
+    std::vector<target> targets;
+    std::vector<int> score_ls;
+    int cloud_num = input_clouds->clouds.size();
+    if(cloud_num != 0){
+        std::vector<sensor_msgs::PointCloud2> clouds = input_clouds->clouds;
 
-    recog::Position position;
-    position.theta = target.theta;
-    position.alpha = target.alpha;
-    position.distance = target.distance;
-    
-    pub.publish(position);
+        for(int i = 0; i < cloud_num; i++){
+            target temp_target;
+            pcl::fromROSMsg(clouds[i],*cloud);
+            temp_target.solve(cloud);
+            targets.push_back(temp_target);
+            score_ls.push_back(temp_target.score);
+        }
+
+        //求分数最高者索引
+        std::vector<int>::iterator biggest = std::max_element(std::begin(score_ls),std::end(score_ls));
+        int index = std::distance(std::begin(score_ls), biggest);
+        std::printf("index = %d",index);
+
+        recog::Position position;
+        if(cloud_num == 0){
+            position.pitch = 0.0f;
+            position.yaw = 0.0f;
+            position.distance = -1.0f;
+            ROS_INFO("None Detection!");
+        }
+        else{
+            position.pitch = targets[index].pitch;
+            position.yaw = targets[index].yaw;
+            position.distance = targets[index].distance;
+        }
+        pub.publish(position);
+    }
+    else
+        {
+            recog::Position position;
+            position.pitch = 0.0f;
+            position.yaw = 0.0f;
+            position.distance = -1.0f;
+
+            pub.publish(position);
+        }
 }
 
+
+//主函数
 int main(int argc, char *argv[])
 {
     ros::init(argc,argv,"solve");
@@ -40,13 +80,16 @@ int main(int argc, char *argv[])
     return 0;
 }
 
+//目标
 target::target(){
-    theta = 0.0f;
-    alpha = 0.0f;
+    pitch = 0.0f;
+    yaw = 0.0f;
     distance = -1.0f;
+    score = 0;
 }
 
 
+//解算
 void target::solve(const TypeXYZ::ConstPtr &input_cloud ){
     
     TypeXYZ::Ptr Keypoints(new TypeXYZ);
@@ -64,29 +107,34 @@ void target::solve(const TypeXYZ::ConstPtr &input_cloud ){
         // ROS_INFO("center:%.2f,%.2f,%.2f",center.x,center.y,center.z);
     }
     else if(Keypoints->size() > 5){
-        //多个目标
+        score = 0;
         center = {0.0f, 0.0f, -1.0f};
     }
     else if(Keypoints->size() <4){
-        ROS_INFO("None Detection!\n");
+        score = 0;
+        // ROS_INFO("None Detection!\n");
         center = {0.0f,0.0f,-1.0f};
     }
+
     angle_solve(center);
+    cal_score(center);
 }
 
 //转为俯仰、偏航与距离
 void target::angle_solve(const pcl::PointXYZ & center){
     if(center.z != -1.0) 
-        alpha = atan(center.z/sqrt(pow(2,center.x)+pow(2,center.y)));
+        pitch = atan(center.y/sqrt(pow(center.x,2)+pow(center.z,2)));
     else
-        alpha = 0.0f;
-    std::printf("solve_theta = %f",theta);
+        pitch = 0.0f;
+    std::printf("solve_pitch = %f",pitch);
     if(center.z != -1.0f)
-        theta= atan(abs(center.x)/center.z);
-    std::printf("solve_alpha = %f",alpha);
+        yaw = atan(center.x/center.z);
+    std::printf("solve_yaw = %f",yaw);
     distance = center.z;
     std::printf("solve_distance = %f",distance);
+    std::printf("\n");
 }
+
 
 //关键点提取，返回关键点索引（角点）
 TypeXYZ Keypoint_Extraction(const TypeXYZ::ConstPtr &input_cloud){
@@ -133,6 +181,17 @@ TypeXYZ Keypoint_Extraction(const TypeXYZ::ConstPtr &input_cloud){
     return keypoints;
 }
 
+
+//计算得分
+void target::cal_score(const pcl::PointXYZ &center){
+    score += fabs(pitch) * pitch_score;
+    score += fabs(yaw) * yaw_score;
+    if(center.z != -1.0f)
+        score += fabs(distance) * distance_score;
+    ROS_INFO("score : %d ",score);
+}
+
+
 //计算中心
 pcl::PointXYZ cal_center(std::vector<pcl::PointXYZ> & keypoints){
     pcl::PointXYZ center;
@@ -153,7 +212,7 @@ pcl::PointXYZ cal_center(std::vector<pcl::PointXYZ> & keypoints){
     // ROS_INFO("MAX_X:%.2f,MIN_X:%.2f",*max_x_pos,*min_x_pos);
 
     //排除误识别
-    if((*max_x_pos - *min_x_pos) < 0.08 || (*max_x_pos - *min_x_pos) > 0.25){
+    if((*max_x_pos - *min_x_pos) < 0.06 || (*max_x_pos - *min_x_pos) > 0.25){
         // ROS_INFO("X error");
         center.x = 0;
         center.y = 0;
@@ -165,7 +224,7 @@ pcl::PointXYZ cal_center(std::vector<pcl::PointXYZ> & keypoints){
     auto min_y_pos = min_element(y_ls.begin(),y_ls.end());
     // ROS_INFO("MAX_Y:%.2f,MIN_Y:%.2f",*max_y_pos,*min_y_pos);
 
-    if((*max_y_pos - *min_y_pos) < 0.03 || (*max_y_pos - *min_y_pos) > 0.1){
+    if((*max_y_pos - *min_y_pos) < 0.03 || (*max_y_pos - *min_y_pos) > 0.12){
         // ROS_INFO("y error");
         center.x = 0;
         center.y = 0;

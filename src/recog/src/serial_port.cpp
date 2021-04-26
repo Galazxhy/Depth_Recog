@@ -48,16 +48,16 @@ void Protocol(unsigned char buffer[],const recog::Position::ConstPtr &position_m
 
     //数据部分
         //预处理
-    unsigned char theta[4];
-    unsigned char alpha[4];
+    unsigned char pitch[4];
+    unsigned char yaw[4];
     unsigned char distance[4];
-    float_to_byte(position_msg->theta,theta);
-    float_to_byte(position_msg->alpha,alpha);
+    float_to_byte(position_msg->pitch,pitch);
+    float_to_byte(position_msg->yaw,yaw);
     float_to_byte(position_msg->distance,distance);
     
-    memcpy(buffer+2*sizeof(u_char),theta,sizeof(theta));
-    memcpy(buffer+2*sizeof(u_char)+sizeof(theta),alpha,sizeof(alpha));
-    memcpy(buffer+2*sizeof(u_char)+2*sizeof(theta),distance,sizeof(distance));
+    memcpy(buffer+2*sizeof(u_char),pitch,sizeof(pitch));
+    memcpy(buffer+2*sizeof(u_char)+sizeof(pitch),yaw,sizeof(yaw));
+    memcpy(buffer+2*sizeof(u_char)+2*sizeof(pitch),distance,sizeof(distance));
 
     //帧尾
     buffer[14] = 0xFC;

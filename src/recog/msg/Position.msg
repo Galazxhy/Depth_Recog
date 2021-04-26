@@ -1,3 +1,3 @@
-float32 theta
-float32 alpha
+float32 pitch
+float32 yaw
 float32 distance

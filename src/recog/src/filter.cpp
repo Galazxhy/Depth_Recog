@@ -38,12 +38,12 @@ void talker_listener::raw_cloud_cb(const sensor_msgs::PointCloud2::ConstPtr &cam
     
     //条件滤波
         pcl::ConditionAnd<pcl::PointXYZ>::Ptr range_cond(new pcl::ConditionAnd<pcl::PointXYZ>());
-        range_cond->addComparison(pcl::FieldComparison<pcl::PointXYZ>::ConstPtr(new pcl::FieldComparison<pcl::PointXYZ>("z",pcl::ComparisonOps::GT, 0.45)));
-        range_cond->addComparison(pcl::FieldComparison<pcl::PointXYZ>::ConstPtr(new pcl::FieldComparison<pcl::PointXYZ>("z",pcl::ComparisonOps::LT, 0.70)));
-        range_cond->addComparison(pcl::FieldComparison<pcl::PointXYZ>::ConstPtr(new pcl::FieldComparison<pcl::PointXYZ>("x",pcl::ComparisonOps::GT,-0.25)));
-        range_cond->addComparison(pcl::FieldComparison<pcl::PointXYZ>::ConstPtr(new pcl::FieldComparison<pcl::PointXYZ>("x",pcl::ComparisonOps::LT,0.25)));
-        range_cond->addComparison(pcl::FieldComparison<pcl::PointXYZ>::ConstPtr(new pcl::FieldComparison<pcl::PointXYZ>("y",pcl::ComparisonOps::GT,-0.1)));
-        range_cond->addComparison(pcl::FieldComparison<pcl::PointXYZ>::ConstPtr(new pcl::FieldComparison<pcl::PointXYZ>("y",pcl::ComparisonOps::LT,0.2)));
+        range_cond->addComparison(pcl::FieldComparison<pcl::PointXYZ>::ConstPtr(new pcl::FieldComparison<pcl::PointXYZ>("z",pcl::ComparisonOps::GT, 0.3)));
+        range_cond->addComparison(pcl::FieldComparison<pcl::PointXYZ>::ConstPtr(new pcl::FieldComparison<pcl::PointXYZ>("z",pcl::ComparisonOps::LT, 1.0)));
+        range_cond->addComparison(pcl::FieldComparison<pcl::PointXYZ>::ConstPtr(new pcl::FieldComparison<pcl::PointXYZ>("x",pcl::ComparisonOps::GT,-0.5)));
+        range_cond->addComparison(pcl::FieldComparison<pcl::PointXYZ>::ConstPtr(new pcl::FieldComparison<pcl::PointXYZ>("x",pcl::ComparisonOps::LT,0.5)));
+        range_cond->addComparison(pcl::FieldComparison<pcl::PointXYZ>::ConstPtr(new pcl::FieldComparison<pcl::PointXYZ>("y",pcl::ComparisonOps::GT,-0.2)));
+        range_cond->addComparison(pcl::FieldComparison<pcl::PointXYZ>::ConstPtr(new pcl::FieldComparison<pcl::PointXYZ>("y",pcl::ComparisonOps::LT,0.4)));
         pcl::ConditionalRemoval<pcl::PointXYZ> removal;
         removal.setCondition(range_cond);
         removal.setInputCloud(temp_cloud);
@@ -75,8 +75,7 @@ void talker_listener::raw_cloud_cb(const sensor_msgs::PointCloud2::ConstPtr &cam
     //转为sensor_msgs格式发布
     ros::Rate rate(1);
     pcl::fromPCLPointCloud2(*cloud_outlierfilted,*temp_cloud);
-    // temp_cloud.header.frame_id = "filtered";
-    // temp_cloud.is_dense = false;
+    
     pcl::toROSMsg(*temp_cloud,filted_cloud);
     filted_cloud.header.frame_id = "filted";
     filted_cloud.is_dense = false;

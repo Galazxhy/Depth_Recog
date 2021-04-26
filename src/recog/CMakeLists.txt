@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(recog)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -16,7 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
   serial
 )
-find_package(PCL REQUIRED COMPONENTS keypoints)
+find_package(PCL REQUIRED COMPONENTS keypoints visualization)
 # find_package(PCL REQUIRED COMPONENTS 
 #   io
 #   common
@@ -60,6 +60,7 @@ find_package(PCL REQUIRED COMPONENTS keypoints)
 add_message_files(
   FILES
   Position.msg
+  clouds.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -79,7 +80,7 @@ add_message_files(
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
   DEPENDENCIES
-  # sensor_msgs
+  sensor_msgs
   std_msgs
 )
 
